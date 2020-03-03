@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="calculator.css">
+    <title>Retro Calculator</title>
+</head>
+
+<body>
+    <header>
+        <h1>Retro Calculator</h1>
+    </header>
+    <section>
+        <div id="calculator">
+            <header>
+                <input id="previous" type="text" value="0" readonly>
+                <input id="current" type="text" value="0" readonly>
+            </header>
+            <main>
+                <button type="button" class="state" id="clear">AC</button>
+                <button type="button" class="state">+/-</button>
+                <button type="button" class="state">%</button>
+                <button type="button" class="operator">/</button>
+                <button type="button" class="number">1</button>
+                <button type="button" class="number">2</button>
+                <button type="button" class="number">3</button>
+                <button type="button" class="operator">x</button>
+                <button type="button" class="number">4</button>
+                <button type="button" class="number">5</button>
+                <button type="button" class="number">6</button>
+                <button type="button" class="operator">+</button>
+                <button type="button" class="number">7</button>
+                <button type="button" class="number">8</button>
+                <button type="button" class="number">9</button>
+                <button type="button" class="operator">-</button>
+                <button type="button" class="number dbl-wd">0</button>
+                <button type="button" id="decimal">.</button>
+                <button type="button" class="operator">=</button>
+            </main>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; Brandon Baskett</p>
+    </footer>
+    <script type="application/javascript" src="calculator.js"></script>
+</body>
+
+</html>
