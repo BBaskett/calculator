@@ -6,7 +6,7 @@ var stateButtons = document.querySelectorAll('button.state');
 var operatorButtons = document.querySelectorAll('button.operator');
 var clearButton = document.querySelector('button#clear');
 var decimalButton = document.querySelector('button#decimal');
-var selectedButton = document.querySelector('button.selected');
+var equalButton = document.querySelector('button#equal');
 // Event Listeners
 decimalButton.addEventListener('click', function () {
     if (!currentInput.value.includes('.')) {
@@ -26,9 +26,12 @@ numberButtons.forEach(function (numberButton) {
 });
 stateButtons.forEach(function (stateButton) {
     stateButton.addEventListener('click', function () {
+        var selectedButton = document.querySelector('button.selected');
         switch (this.textContent) {
             case 'AC':
+                selectedButton.classList.toggle('selected');
                 previousInput.value = currentInput.value = '0';
+                break;
             case 'C':
                 clearButton.textContent = 'AC';
                 currentInput.value = '0';
@@ -44,87 +47,94 @@ stateButtons.forEach(function (stateButton) {
 });
 operatorButtons.forEach(function (operatorButton) {
     operatorButton.addEventListener('click', function () {
-        var calculator = new Calculator(currentInput.value, previousInput.value);
+        var selectedButton = document.querySelector('button.selected');
         if (selectedButton) {
             selectedButton.classList.toggle('selected');
         }
+        if (!selectedButton && previousInput.value !== '0') {
+            previousInput.value = '0';
+        }
+        this.classList.toggle('selected');
         switch (this.textContent) {
             case '/':
-            case 'x':
-            case '+':
-            case '-':
-                this.classList.toggle('selected');
-            case '/':
-                calculator.divide();
+                divide();
                 break;
             case 'x':
-                calculator.multiply();
+                multiply();
                 break;
             case '+':
-                calculator.add();
+                add();
                 break;
             case '-':
-                calculator.subtract();
-                break;
-            case '=':
-                if (selectedButton) {
-                    switch (selectedButton.value) {
-                        case '/':
-                            calculator.divide();
-                            break;
-                        case 'x':
-                            calculator.multiply();
-                            break;
-                        case '+':
-                            calculator.add();
-                            break;
-                        case '-':
-                            calculator.subtract();
-                            break;
-                    }
-                }
-                else {
-                    console.log('idk yet');
-                }
+                subtract();
                 break;
         }
     });
 });
-var Calculator = /** @class */ (function () {
-    function Calculator(current, previous) {
-        this.current = current;
-        this.previous = previous;
+equalButton.addEventListener('click', function () {
+    var selectedButton = document.querySelector('button.selected');
+    switch (selectedButton.textContent) {
+        case '/':
+            divide();
+            break;
+        case 'x':
+            multiply();
+            break;
+        case '+':
+            add();
+            break;
+        case '-':
+            subtract();
+            break;
     }
-    Calculator.prototype.add = function () {
-        previousInput.value = (Number(this.previous) + Number(this.current)).toString();
-        /*if (previousInput.value === '0') {
-            previousInput.value = this.current;
-        } else {
-            previousInput.value = (Number(this.previous) + Number(this.current)).toString()
-        }*/
-        currentInput.value = '0';
-    };
-    Calculator.prototype.subtract = function () {
-        if (previousInput.value === '0') {
-            previousInput.value = this.current;
-        }
-        else {
-            previousInput.value = (Number(this.previous) - Number(this.current)).toString();
-        }
-        currentInput.value = '0';
-    };
-    Calculator.prototype.multiply = function () {
-        if (previousInput.value === '0') {
-            previousInput.value = this.current;
-        }
-        else {
-            previousInput.value = (Number(this.previous) * Number(this.current)).toString();
-        }
-        currentInput.value = '0';
-    };
-    Calculator.prototype.divide = function () {
-        console.log('divide');
-    };
-    return Calculator;
-}());
+    selectedButton.classList.toggle('selected');
+});
+function add() {
+    if (previousInput.value === '0') {
+        previousInput.value = currentInput.value;
+    }
+    else if (currentInput.value === '0') {
+        return;
+    }
+    else {
+        previousInput.value = (Number(previousInput.value) + Number(currentInput.value)).toString();
+    }
+    currentInput.value = '0';
+}
+function subtract() {
+    if (previousInput.value === '0') {
+        previousInput.value = currentInput.value;
+    }
+    else if (currentInput.value === '0') {
+        return;
+    }
+    else {
+        previousInput.value = (Number(previousInput.value) - Number(currentInput.value)).toString();
+    }
+    currentInput.value = '0';
+}
+function multiply() {
+    if (previousInput.value === '0') {
+        previousInput.value = currentInput.value;
+    }
+    else if (currentInput.value === '0') {
+        return;
+    }
+    else {
+        previousInput.value = (Number(previousInput.value) * Number(currentInput.value)).toString();
+    }
+    currentInput.value = '0';
+}
+function divide() {
+    if (previousInput.value === '0') {
+        previousInput.value = currentInput.value;
+    }
+    else if (currentInput.value === '0') {
+        return;
+    }
+    else {
+        previousInput.value = (Number(previousInput.value) / Number(currentInput.value)).toString();
+    }
+    currentInput.value = '0';
+}
 //# sourceMappingURL=calculator.js.map

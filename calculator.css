@@ -46,6 +46,10 @@ button {
   border: 1px solid black;
 }
 
+button#equal {
+  background-color: lime;
+}
+
 button.dbl-wd {
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
