@@ -137,4 +137,3 @@ function divide() {
     }
     currentInput.value = '0';
 }
-//# sourceMappingURL=calculator.js.map
