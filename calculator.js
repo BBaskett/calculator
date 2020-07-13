@@ -40,7 +40,7 @@ action_buttons.forEach(function (button) {
             return (clear_button.innerText = "AC");
         }
         if (last_command.value !== "" &&
-            button.innerText !== "=" &&
+            button.id !== "equals" &&
             current.value !== "0") {
             if (last_command.value === "+") {
                 previous.setAttribute("value", add(Number(previous.value), Number(current.value)));
@@ -57,13 +57,13 @@ action_buttons.forEach(function (button) {
             current.setAttribute("value", "0");
             return last_command.setAttribute("value", button.innerText);
         }
-        if (button.innerText === "%") {
+        if (button.id === "percentage") {
             return current.setAttribute("value", (Number(current.value) / 100).toString());
         }
-        if (button.innerText === "+/-") {
+        if (button.id === "invert") {
             return current.setAttribute("value", (Number(current.value) * -1).toString());
         }
-        if (button.innerText === "+") {
+        if (button.id === "add") {
             if (previous.value === "") {
                 previous.setAttribute("value", current.value);
             }
@@ -73,7 +73,7 @@ action_buttons.forEach(function (button) {
             current.setAttribute("value", "0");
             return last_command.setAttribute("value", button.innerText);
         }
-        if (button.innerText === "-") {
+        if (button.id === "subtract") {
             if (previous.value === "") {
                 console.log(current.value);
                 previous.setAttribute("value", current.value);
@@ -84,7 +84,7 @@ action_buttons.forEach(function (button) {
             current.setAttribute("value", "0");
             return last_command.setAttribute("value", button.innerText);
         }
-        if (button.innerText === "x") {
+        if (button.id === "multiply") {
             if (previous.value === "") {
                 previous.setAttribute("value", current.value);
             }
@@ -94,7 +94,7 @@ action_buttons.forEach(function (button) {
             current.setAttribute("value", "0");
             return last_command.setAttribute("value", button.innerText);
         }
-        if (button.innerText === "/") {
+        if (button.id === "divide") {
             if (previous.value === "") {
                 previous.setAttribute("value", current.value);
             }
@@ -104,7 +104,7 @@ action_buttons.forEach(function (button) {
             current.setAttribute("value", "0");
             return last_command.setAttribute("value", button.innerText);
         }
-        if (button.innerText === "=") {
+        if (button.id === "equals") {
             if (previous.value === "") {
                 return;
             }
